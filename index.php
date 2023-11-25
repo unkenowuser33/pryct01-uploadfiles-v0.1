@@ -43,29 +43,20 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compartir archivos</title>
     <script src="parametro.js"></script>
     <link rel="stylesheet" href="estilo.css">
-    <script>
-  // Verificar si la URL tiene la estructura ibu.pe/xxx
-  if (window.location.pathname.startsWith('/')) {
-    // Obtener la parte después de la barra
-    const rutaDespuesSlash = window.location.pathname.slice(1);
-
-    // Redirigir a ibu.pe?nombre=xxx
-    window.location.href = `https://ibu.pe?nombre=${rutaDespuesSlash}`;
-  }
-</script>
-
 </head>
 
 <body>
-    <div class="title1">Compartir archivos</div>
+    <h1>Compartir archivos <sup class="beta">BETA</sup></h1>
     <div class="content">
-        <h2>Sube tus archivos y comparte enlace temporal: <span>ibu.pe/<?php echo $carpetaNombre;?></span></h2>
+        <h3>Sube tus archivos y comparte este enlace temporal: <span>ibu.pe/?nombre=<?php echo $carpetaNombre;?></span></h3>
         <div class="container">
             <div class="drop-area" id="drop-area">
                 <form action="" id="form" method="POST" enctype="multipart/form-data">
@@ -119,7 +110,7 @@ try {
         </div>
     </div>
 
-    <script src="parametro.js"></script>
+    <!-- <script src="parametro.js"></script> -->
 
 </body>
 

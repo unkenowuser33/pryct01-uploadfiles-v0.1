@@ -47,15 +47,6 @@ function generarCadenaAleatoria() {
 }
 
 
-
-
-
-
-
-
-
-
-
 // //BARRA DE PROGRESO 
 // function uploadFile(carpetaRuta, inputId) {
 //   var archivoInput = document.getElementById(inputId);
@@ -88,9 +79,7 @@ function generarCadenaAleatoria() {
 // }
 
 
-
 //DROP AREA
-
 
 // Obtén la zona de arrastre y el formulario
 const dropArea = document.getElementById('drop-area');
