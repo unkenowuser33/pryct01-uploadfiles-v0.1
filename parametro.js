@@ -1,10 +1,9 @@
-
 // Obtén la URL actual
 const urlActual = window.location.href;
 
 // Verifica si el parámetro 'nombre' ya está presente en la URL
-var parametros = new URLSearchParams(window.location.search);
-var carpetaNombre = parametros.get("nombre");
+const parametros = new URLSearchParams(window.location.search);
+let carpetaNombre = parametros.get("nombre");
 
 if (!carpetaNombre) {
     // Si 'nombre' no está presente, genera un número aleatorio
@@ -14,26 +13,49 @@ if (!carpetaNombre) {
     // Redirige a la nueva URL con el parámetro 'nombre'
     window.location.href = urlConParametro;
 } else {
-    // Extrae el valor del parámetro de la URL
-    const parametros = new URLSearchParams(window.location.search);
-    const carpetaNombre = parametros.get("nombre");
-
     // Llama a la función para crear la carpeta con el nombre obtenido
-    function crearCarpeta(carpetaNombre) {
+    crearCarpeta(carpetaNombre);
+}
+
+// Función para generar una cadena aleatoria
+function generarCadenaAleatoria() {
+    const caracteres = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let cadenaAleatoria = '';
+    for (let i = 0; i < 3; i++) {
+        const caracterAleatorio = caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+        cadenaAleatoria += caracterAleatorio;
+    }
+    return cadenaAleatoria;
+}
+
+// Función para crear la carpeta
+function crearCarpeta(carpetaNombre) {
     $.ajax({
-        url: 'crearCarpeta.php', // Ruta del archivo PHP que crea la carpeta
-        type: 'POST', // Puedes usar POST o GET según tus necesidades
-        data: { nombreCarpeta: carpetaNombre }, // Envía el nombre de la carpeta como datos
+        url: 'crearCarpeta.php',
+        type: 'POST',
+        data: { nombreCarpeta: carpetaNombre },
         success: function(response) {
-            console.log('Carpeta creada.'); // Mensaje de éxito (puedes personalizarlo)
+            console.log('Carpeta creada con éxito:', response);
         },
-        error: function() {
-            console.log('Error al crear la carpeta.'); // Mensaje de error (puedes personalizarlo)
+        error: function(xhr, status, error) {
+            console.error('Error al crear la carpeta:', error);
         }
     });
 }
-    
-}
+
+// Función para manejar el evento de envío del formulario
+Form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fileInput = Form.querySelector('#archivo');
+    const file = fileInput.files[0];
+    if (file) {
+        // Puedes enviar el archivo al servidor para su procesamiento aquí
+        console.log('Subir archivo:', file.name);
+    } else {
+        alert('Por favor, seleccione un archivo primero.');
+    }
+});
+
 
 // Función para generar un número aleatorio de 3 dígitos
 function generarCadenaAleatoria() {
